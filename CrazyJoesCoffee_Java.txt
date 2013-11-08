@@ -1,0 +1,362 @@
+package com.patsapps.crazyjoesjavawagon;
+
+import java.text.DecimalFormat;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	//calculateButton method
+	public void buttonClick (View view){
+		//create TextView
+		TextView regularTotalTextView = (TextView)findViewById(R.id.regularTotalTextView);
+		TextView tenPercentOffTextView = (TextView)findViewById(R.id.tenPercentOffTextView);
+		TextView twentyPercentOffTextView = (TextView)findViewById(R.id.twentyPercentOffTextView);
+		
+		// create RadioButton
+		RadioButton sipperRadioButton = (RadioButton)findViewById(R.id.sipperRadio);
+		RadioButton regularJoeRadioButton = (RadioButton)findViewById(R.id.regularRadio);
+		RadioButton bucketOJavaRadioButton = (RadioButton)findViewById(R.id.bucketRadio);
+		
+		// create CheckBox instances
+		CheckBox vanillaCheckBox = (CheckBox) findViewById(R.id.vanillaCheckBox);
+		CheckBox hazelnutCheckBox = (CheckBox) findViewById(R.id.hazelnutCheckBox);
+		CheckBox europeanMochaDeluxeCheckBox = (CheckBox) findViewById(R.id.europeanMochaDeluxeCheckBox);
+		
+		//declare variables
+		DecimalFormat df = new DecimalFormat ("$#0.00");
+		double tax = 0.06;
+		double sipper = 1.25;
+		double regularJoe = 2.00;
+		double bucketOJava = 3.50;
+		double vanilla = 0.25;
+		double hazelnut = 0.25;
+		double europeanMochaDeluxe = 0.50;
+		double flavorTotal = 0;
+		double total = 0;  //hold the regular total calculation
+		double total10 = 0;  //holds the 10% off calculation
+		double total20 = 0;  // holds the 20% tip calculation
+		
+		//Sipper combinations
+		 if (sipperRadioButton.isChecked()){
+			total = sipper + (sipper * tax);
+			total10 = total - (total * 0.1);
+			total20 = total * 0.20;
+			String sipperString = df.format(total);
+			String tenPercentString = df.format(total10);
+			String twentyPercentString = df.format(total20);
+			regularTotalTextView.setText(sipperString);
+			tenPercentOffTextView.setText(tenPercentString);
+			twentyPercentOffTextView.setText(twentyPercentString);
+			
+		 } if (sipperRadioButton.isChecked()&& vanillaCheckBox.isChecked()){
+				total = (sipper + vanilla) + ((sipper + vanilla) * tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+				
+		 } if (sipperRadioButton.isChecked() && vanillaCheckBox.isChecked()  && hazelnutCheckBox.isChecked()){
+				total = (sipper + vanilla + hazelnut) + ((sipper + vanilla + hazelnut)* tax);
+			 	total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+		
+		} if (sipperRadioButton.isChecked() && vanillaCheckBox.isChecked()  && hazelnutCheckBox.isChecked() && europeanMochaDeluxeCheckBox.isChecked()){
+				total = (sipper + vanilla + hazelnut + europeanMochaDeluxe) + ((sipper + vanilla + hazelnut + europeanMochaDeluxe)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+			 
+		 } if (sipperRadioButton.isChecked() && hazelnutCheckBox.isChecked()){
+				total = (sipper + hazelnut) + ((sipper + hazelnut)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString); 
+			 
+		} if (sipperRadioButton.isChecked() && europeanMochaDeluxeCheckBox.isChecked()){
+				total = (sipper + europeanMochaDeluxe) + ((sipper + europeanMochaDeluxe)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+			 
+		} if (sipperRadioButton.isChecked() && europeanMochaDeluxeCheckBox.isChecked() && hazelnutCheckBox.isChecked()){
+				total = (sipper + europeanMochaDeluxe + hazelnut) + ((sipper + europeanMochaDeluxe + hazelnut)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+		
+					 
+		} if (sipperRadioButton.isChecked() && europeanMochaDeluxeCheckBox.isChecked() && vanillaCheckBox.isChecked()){
+				 total = (sipper + europeanMochaDeluxe + vanilla) + ((sipper + europeanMochaDeluxe + vanilla)* tax);
+				 total10 = total - (total * 0.1);
+				 total20 = total * 0.20;
+				 String sipperString = df.format(total);
+				 String tenPercentString = df.format(total10);
+				 String twentyPercentString = df.format(total20);
+				 regularTotalTextView.setText(sipperString);
+				 tenPercentOffTextView.setText(tenPercentString);
+				 twentyPercentOffTextView.setText(twentyPercentString);
+		 
+		 
+	 
+			 }  //end if statement
+		
+		//  regularJoe
+		 if (regularJoeRadioButton.isChecked()){
+			total = regularJoe + (regularJoe * tax);
+			total10 = total - (total * 0.1);
+			total20 = total * 0.20;
+			String sipperString = df.format(total);
+			String tenPercentString = df.format(total10);
+			String twentyPercentString = df.format(total20);
+			regularTotalTextView.setText(sipperString);
+			tenPercentOffTextView.setText(tenPercentString);
+			twentyPercentOffTextView.setText(twentyPercentString);
+			
+		 } if (regularJoeRadioButton.isChecked()&& vanillaCheckBox.isChecked()){
+				total = (regularJoe + vanilla) + ((regularJoe + vanilla) * tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+				
+		 } if (regularJoeRadioButton.isChecked() && vanillaCheckBox.isChecked()  && hazelnutCheckBox.isChecked()){
+			 	flavorTotal = vanilla + hazelnut;
+				total = (regularJoe + flavorTotal) + ((regularJoe + flavorTotal)* tax);
+			 	total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+		
+		} if (regularJoeRadioButton.isChecked() && vanillaCheckBox.isChecked()  && hazelnutCheckBox.isChecked() && europeanMochaDeluxeCheckBox.isChecked()){
+				total = (regularJoe + vanilla + hazelnut + europeanMochaDeluxe) + ((regularJoe + vanilla + hazelnut + europeanMochaDeluxe)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+			 
+		 } if (regularJoeRadioButton.isChecked() && hazelnutCheckBox.isChecked()){
+				total = (regularJoe + hazelnut) + ((regularJoe + hazelnut)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString); 
+			 
+		} if (regularJoeRadioButton.isChecked() && europeanMochaDeluxeCheckBox.isChecked()){
+				total = (regularJoe + europeanMochaDeluxe) + ((regularJoe + europeanMochaDeluxe)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+			 
+		} if (regularJoeRadioButton.isChecked() && europeanMochaDeluxeCheckBox.isChecked() && hazelnutCheckBox.isChecked()){
+				total = (regularJoe + europeanMochaDeluxe + hazelnut) + ((regularJoe + europeanMochaDeluxe + hazelnut)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+		
+					 
+		} if (regularJoeRadioButton.isChecked() && europeanMochaDeluxeCheckBox.isChecked() && vanillaCheckBox.isChecked()){
+				 total = (regularJoe + europeanMochaDeluxe + vanilla) + ((regularJoe + europeanMochaDeluxe + vanilla)* tax);
+				 total10 = total - (total * 0.1);
+				 total20 = total * 0.20;
+				 String sipperString = df.format(total);
+				 String tenPercentString = df.format(total10);
+				 String twentyPercentString = df.format(total20);
+				 regularTotalTextView.setText(sipperString);
+				 tenPercentOffTextView.setText(tenPercentString);
+				 twentyPercentOffTextView.setText(twentyPercentString);
+		 }  //end if statement
+		
+		//  bucketOJoe
+		 if (bucketOJavaRadioButton.isChecked()){
+			total = bucketOJava + (bucketOJava * tax);
+			total10 = total - (total * 0.1);
+			total20 = total * 0.20;
+			String sipperString = df.format(total);
+			String tenPercentString = df.format(total10);
+			String twentyPercentString = df.format(total20);
+			regularTotalTextView.setText(sipperString);
+			tenPercentOffTextView.setText(tenPercentString);
+			twentyPercentOffTextView.setText(twentyPercentString);
+			
+		 } if (bucketOJavaRadioButton.isChecked()&& vanillaCheckBox.isChecked()){
+				total = (bucketOJava + vanilla) + ((bucketOJava + vanilla) * tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+				
+		 } if (bucketOJavaRadioButton.isChecked() && vanillaCheckBox.isChecked()  && hazelnutCheckBox.isChecked()){
+				total = (bucketOJava + vanilla + hazelnut) + ((bucketOJava + vanilla + hazelnut)* tax);
+			 	total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+		
+		} if (bucketOJavaRadioButton.isChecked() && vanillaCheckBox.isChecked()  && hazelnutCheckBox.isChecked() && europeanMochaDeluxeCheckBox.isChecked()){
+				total = (bucketOJava + vanilla + hazelnut + europeanMochaDeluxe) + ((bucketOJava + vanilla + hazelnut + europeanMochaDeluxe)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+			 
+		 } if (bucketOJavaRadioButton.isChecked() && hazelnutCheckBox.isChecked()){
+				total = (bucketOJava + hazelnut) + ((bucketOJava + hazelnut)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString); 
+			 
+		} if (bucketOJavaRadioButton.isChecked() && europeanMochaDeluxeCheckBox.isChecked()){
+				total = (bucketOJava + europeanMochaDeluxe) + ((bucketOJava + europeanMochaDeluxe)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+			 
+		} if (bucketOJavaRadioButton.isChecked() && europeanMochaDeluxeCheckBox.isChecked() && hazelnutCheckBox.isChecked()){
+				total = (bucketOJava + europeanMochaDeluxe + hazelnut) + ((bucketOJava + europeanMochaDeluxe + hazelnut)* tax);
+				total10 = total - (total * 0.1);
+				total20 = total * 0.20;
+				String sipperString = df.format(total);
+				String tenPercentString = df.format(total10);
+				String twentyPercentString = df.format(total20);
+				regularTotalTextView.setText(sipperString);
+				tenPercentOffTextView.setText(tenPercentString);
+				twentyPercentOffTextView.setText(twentyPercentString);
+		
+					 
+		} if (bucketOJavaRadioButton.isChecked() && europeanMochaDeluxeCheckBox.isChecked() && vanillaCheckBox.isChecked()){
+				 total = (bucketOJava + europeanMochaDeluxe + vanilla) + ((bucketOJava + europeanMochaDeluxe + vanilla)* tax);
+				 total10 = total - (total * 0.1);
+				 total20 = total * 0.20;
+				 String sipperString = df.format(total);
+				 String tenPercentString = df.format(total10);
+				 String twentyPercentString = df.format(total20);
+				 regularTotalTextView.setText(sipperString);
+				 tenPercentOffTextView.setText(tenPercentString);
+				 twentyPercentOffTextView.setText(twentyPercentString);
+		 }  //end if statement	
+		
+	}  // end buttonClickMethod
+	
+	public void reset(View view){
+		//create TextView
+		TextView regularTotalTextView = (TextView)findViewById(R.id.regularTotalTextView);
+		TextView tenPercentOffTextView = (TextView)findViewById(R.id.tenPercentOffTextView);
+		TextView twentyPercentOffTextView = (TextView)findViewById(R.id.twentyPercentOffTextView);
+		
+		// create CheckBox instances
+		CheckBox vanillaCheckBox = (CheckBox) findViewById(R.id.vanillaCheckBox);
+		CheckBox hazelnutCheckBox = (CheckBox) findViewById(R.id.hazelnutCheckBox);
+		CheckBox europeanMochaDeluxeCheckBox = (CheckBox) findViewById(R.id.europeanMochaDeluxeCheckBox);
+		// create RadioGroup
+		RadioGroup sizeRadioGroup = (RadioGroup) findViewById(R.id.sizeRadioGroup);
+		
+		regularTotalTextView.setText("$0.00");
+		tenPercentOffTextView.setText("$0.00");
+		twentyPercentOffTextView.setText("$0.00");
+		
+		vanillaCheckBox.setChecked(false);
+		hazelnutCheckBox.setChecked(false);
+		europeanMochaDeluxeCheckBox.setChecked(false);
+		
+		sizeRadioGroup.clearCheck();
+}
+}
